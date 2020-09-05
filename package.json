@@ -1,14 +1,29 @@
 {
-  "name": "note-taker",
+  "name": "express-note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Note taker app using express deployed on Heroku.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
+  "author": "Ahmed Sheikh",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ASheikh-io/Express-Note-Taker-App.git"
+  },
+  "keywords": [
+    "Express",
+    "JavaScript",
+    "Heroku"
+  ],
+  "bugs": {
+    "url": "https://github.com/ASheikh-io/Express-Note-Taker-App/issues"
+  },
+  "homepage": "https://github.com/ASheikh-io/Express-Note-Taker-App#readme"
 }
