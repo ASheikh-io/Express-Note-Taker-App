@@ -15,9 +15,9 @@ module.exports = function(app) {
         app.POST();
     };
 
-    '/', funtion (req, res) {
+    // '/', funtion (req, res) {
         
-    });
+    // });
     // step 1 convert json to object
             // var note = JSON.parse(db);
 
