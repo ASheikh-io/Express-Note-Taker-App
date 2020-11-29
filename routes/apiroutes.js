@@ -1,6 +1,6 @@
 const fs = require("fs");
 const db = require("../db/db.json");
-
+const { v4: uuidv4 } = require('uuid');
 
 // ===============================================================================
 // ROUTING
@@ -12,7 +12,13 @@ module.exports = function(app) {
     // In each of the below cases the user is shown an HTML page of content
     // ---------------------------------------------------------------------------
     
-        app.POST();
+        app.get("/api/notes", function(req, res) {
+            res.send(db);
+        });
+
+        app.post("/api/notes", function(req, res) {
+            
+        })
     };
 
     // '/', funtion (req, res) {
