@@ -1,10 +1,19 @@
-const fs = require("fs");
 const db = require("../db/db.json");
+const fs = require("fs");
 const { v4: uuidv4 } = require('uuid');
 
-// ===============================================================================
-// ROUTING
-// ===============================================================================
+let savedNote = [];
+
+fs.readFile("./db/db.json", (err, data) => {
+    if (err) throw err;
+    savedNote = (JSON.parse(data));
+});
+
+editNote = () => {
+    fs.writeFile("./db/db.json", JSON.stringify(savedNote), (err) => {
+        if (err) throw err;
+    });
+}
 
 module.exports = function(app) {
     // HTML GET Requests
@@ -12,25 +21,28 @@ module.exports = function(app) {
     // In each of the below cases the user is shown an HTML page of content
     // ---------------------------------------------------------------------------
     
-        app.get("/api/notes", function(req, res) {
-            res.send(db);
-        });
+    app.get("/api/notes", (req, res) => {
+        res.json(savedNote);
+      });
 
-        app.post("/api/notes", function(req, res) {
-            
-        })
-    };
+    app.post("/api/notes", (req, res) => {
+        const newNote = req.body
+        newNote.id = (uuidv4());
+        savedNote.push(newNote);
+        editNote();
+        res.send(savedNote);
+    });
 
-    // '/', funtion (req, res) {
-        
-    // });
-    // step 1 convert json to object
-            // var note = JSON.parse(db);
-
-
-            // step 2 push new info to object
-            // step 3 convert object back to json 
-            // write to the json file
-
-
-            // fs.writeFile()
+    app.delete("/api/notes/:id", (req, res) => {
+        idDelete = req.params.id
+        for (let i = 0; i < savedNote.length; i++) {
+            if (savedNote[i].id === idDelete) {
+                savedNote.splice(i, 1);
+                editNote();
+                res.send(savedNote);
+                return;
+            }
+        }
+    });
+};
+   
